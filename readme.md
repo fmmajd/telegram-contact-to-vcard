@@ -69,7 +69,7 @@ I enjoyed. You can too
   - first go into the container bash: `make bash`
   - then run: `go run main.go`
   - if you want to have a contact named 'Deleted Account' with all deleted account numbers of telegram, add a --add-deleted argument when running:
-  `go run main.go --add-deleting`
+  `go run main.go --add-deleted`
   
 
 - voila. your file is ready at data/res.cvf
