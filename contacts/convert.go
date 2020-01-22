@@ -17,7 +17,7 @@ func Convert(filepath string, targetPath string, ignoreDeletedAccounts bool) {
 		log.Fatalln(err)
 	}
 
-	contacts := parseHtml(*doc)
+	contacts := parseHtml(*doc, ignoreDeletedAccounts)
 	res := ""
 	for i, c := range contacts {
 		if i != 0 {

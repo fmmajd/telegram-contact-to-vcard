@@ -68,5 +68,8 @@ I enjoyed. You can too
 - run main.go file i the bash
   - first go into the container bash: `make bash`
   - then run: `go run main.go`
+  - if you want to have a contact named 'Deleted Account' with all deleted account numbers of telegram, add a --add-deleted argument when running:
+  `go run main.go --add-deleting`
+  
 
 - voila. your file is ready at data/res.cvf

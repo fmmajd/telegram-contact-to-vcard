@@ -6,10 +6,13 @@ import (
 	"strings"
 )
 
-func parseHtml(doc goquery.Document) []contact {
+func parseHtml(doc goquery.Document, ignoreDeletedAccounts bool) []contact {
 	contacts := map[string]contact{}
 	doc.Find(".entry.clearfix").Each(func(i int, entry *goquery.Selection) {
 		name := entry.Find(".name").Text()
+		if ignoreDeletedAccounts && strings.Contains(name, "Deleted Account") {
+			return
+		}
 		name = trimContactInfo(name)
 
 		phone := entry.Find(".details_entry.details").Text()
