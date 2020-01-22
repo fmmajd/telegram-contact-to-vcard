@@ -7,7 +7,7 @@ import (
 	"os"
 )
 
-func Convert(filepath string, ignoreDeletedAccounts bool) {
+func Convert(filepath string, targetPath string, ignoreDeletedAccounts bool) {
 	// Request the HTML page.
 	content := getFileAsDocument(filepath)
 
@@ -27,7 +27,12 @@ func Convert(filepath string, ignoreDeletedAccounts bool) {
 		res += vCard
 	}
 
-	log.Println(res)
+	err = generateFile(targetPath, res)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	log.Println(targetPath)
 }
 
 func getFileAsDocument(path string) io.Reader {

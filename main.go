@@ -11,8 +11,9 @@ func main() {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	filename := curDir + "/data/lists/contacts.html"
+	beginPath := curDir + "/data/lists/contacts.html"
+	targetPath := curDir + "/data/res.vcf"
 	ignoreDeletedAccounts := true
 
-	contacts.Convert(filename, ignoreDeletedAccounts)
+	contacts.Convert(beginPath, targetPath, ignoreDeletedAccounts)
 }

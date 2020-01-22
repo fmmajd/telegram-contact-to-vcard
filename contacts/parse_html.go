@@ -42,27 +42,25 @@ func appendToContacts(contacts map[string]contact, name string, number string) m
 }
 
 func trimContactInfo(s string) string {
+	//this part is very important. for some reason, go can not trim \s end-of-line characters from these docs
+	space := regexp.MustCompile(`\s+`)
+	s = space.ReplaceAllString(s, " ")
+
 	newlineChars := []string{
 		"\r\n",
 		"\r",
 		"\n",
-		"\t",
-		"\\s",
 		"\v",
 		"\f",
+		" ",
 		"\u0085",
 		"\u2028",
 		"\u2029",
 	}
 	for _, ch := range newlineChars {
-		s = strings.Trim(s, ch)
+		s = strings.TrimLeft(s, ch)
+		s = strings.TrimRight(s, ch)
 	}
-	s = strings.TrimLeft(s, " ")
-	s = strings.TrimRight(s, " ")
-
-	//this part is very important. for some reason, go can not trim \s end-of-line characters from these docs
-	space := regexp.MustCompile(`\s+`)
-	s = space.ReplaceAllString(s, "")
 
 	return s
 }

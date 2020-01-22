@@ -66,13 +66,14 @@ func firstNameAndLastName(c contact) (string, string) {
 }
 
 func vCardNAttribute(firstName string, lastName string) string {
+	firstName = strings.TrimRight(firstName, " ")
 	nAttr := fmt.Sprintf("%s;%s;;;", lastName, firstName)
 
 	return nAttr
 }
 
 func vCardFNAttribute(firstName string, lastName string) string {
-	nAttr := fmt.Sprintf("%s %s", firstName, lastName)
+	nAttr := fmt.Sprintf("%s%s", firstName, lastName)
 
 	return nAttr
 }
