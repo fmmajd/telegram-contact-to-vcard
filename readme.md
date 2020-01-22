@@ -56,7 +56,6 @@ And here is my newly prepared v-card file to import in the new phone.
 I enjoyed. You can too
 
 ## **How to?**
----
 
 - clone the repository
   - ``git clone https://github.com/fmmajd/telegram-contact-to-vcard``
