@@ -1,7 +1,6 @@
 package contacts
 
 import (
-	"fmt"
 	"github.com/PuerkitoBio/goquery"
 	"io"
 	"log"
@@ -19,18 +18,16 @@ func Convert(filepath string, ignoreDeletedAccounts bool) {
 	}
 
 	contacts := parseHtml(*doc)
-	for _, c := range contacts {
-		numbers := ""
-		for i, n := range c.numbers {
-			if i == 0 {
-				numbers += n
-			} else {
-				numbers += ", " + n
-			}
+	res := ""
+	for i, c := range contacts {
+		if i != 0 {
+			res += "\n"
 		}
-		msg := fmt.Sprintf("%s: %s", c.name, numbers)
-		log.Println(msg)
+		vCard := createTemplate(c)
+		res += vCard
 	}
+
+	log.Println(res)
 }
 
 func getFileAsDocument(path string) io.Reader {
