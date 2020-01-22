@@ -60,6 +60,7 @@ func trimContactInfo(s string) string {
 	s = strings.TrimLeft(s, " ")
 	s = strings.TrimRight(s, " ")
 
+	//this part is very important. for some reason, go can not trim \s end-of-line characters from these docs
 	space := regexp.MustCompile(`\s+`)
 	s = space.ReplaceAllString(s, "")
 
