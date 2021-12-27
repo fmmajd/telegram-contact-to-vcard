@@ -60,16 +60,24 @@ I enjoyed. You can too
 - clone the repository
   - ``git clone https://github.com/fmmajd/telegram-contact-to-vcard``
 
-- put the whole exported folder's content in the data folder, i.e.: you have a data/lists/contacts.html file
+- install docker engine and docker compose
+  - https://docs.docker.com/engine/install/
+  - https://docs.docker.com/compose/install/
+
+- rename the ``DataExport_<date>`` folder from telegram to ``data``  and put it inside the ``telegram-contact-to-vcard`` folder. So the structure should be: ``telegram-contact-to-vcard/data/lists/contacts.html``
 
 - run docker container
   ``make up``
 
-- run main.go file i the bash
+- run main.go file inside the container
   - first go into the container bash: `make bash`
   - then run: `go run main.go`
   - if you want to have a contact named 'Deleted Account' with all deleted account numbers of telegram, add a --add-deleted argument when running:
   `go run main.go --add-deleted`
+  - Change the owner of the output file to your user
+    - `USER=$(stat -c %g ./data/lists/)`
+    - `chown $USER:$USER ./data/res.vcf`
+    
   
 
 - voila. your file is ready at data/res.cvf
